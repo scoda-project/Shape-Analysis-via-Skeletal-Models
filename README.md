@@ -12,6 +12,17 @@ The methodology was introduced in:
 
 ---
 
+## Synthetic Data Generation
+
+This repository uses the **ETRep** R package for both model fitting and statistical analysis. In addition to analyzing real anatomical datasets, ETRep provides tools for generating synthetic tubular objects represented as **Elliptical Tube Representations (ETReps)**. The synthetic data are generated within the ETRep shape space using intrinsic transformations that preserve the geometric validity of the objects by enforcing the **Relative Curvature Condition (RCC)**. This enables the creation of realistic shape populations with controlled geometric variability while avoiding local self-intersections. 
+
+The synthetic datasets are primarily intended for validating LP-DS-Rep fitting algorithms, evaluating statistical methods, and benchmarking shape analysis pipelines under controlled conditions. The generated ETReps can be converted into meshes, point clouds, and skeletal representations, making them suitable for simulation studies, hypothesis testing, machine learning, and visualization. The implementation follows the methodology introduced in the publication below.
+
+> Mohsen Taheri Shalmani, Stephen M. Pizer, and Jörn Schulz.
+> **The Mean Shape under the Relative Curvature Condition.**
+> *Journal of Computational and Graphical Statistics*, 2025.
+> https://doi.org/10.1080/10618600.2025.2535600
+
 ## Features
 
 - LPDSRep model fitting
