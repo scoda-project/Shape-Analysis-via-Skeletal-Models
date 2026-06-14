@@ -54,14 +54,12 @@ typeOfStudy<-"shapeAnalysis"              #removing scale
 
 # choose euclideanization method typeOfStudy4directions as "PNS" or "tangent space"
 # PNS takes more time!
-typeOfStudy4directions<-"tangent space"
-# typeOfStudy4directions<-"PNS"
-
+# typeOfStudy4directions<-"tangent space"
+typeOfStudy4directions<-"PNS"
 
 #choose type of mean direction
 typeOfMeanDirection<-"Frechet"
 # typeOfMeanDirection<-"PNS"
-
 
 # choose typeOfTest as "Parametric" or "Permutation"
 typeOfTest<-"Parametric"    # Fast Parametric test is based on normality assumption
