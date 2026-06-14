@@ -1412,10 +1412,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant spokes' lengths",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- par3d(no.readonly=TRUE)
-  # dput(pp, file="plotView.R", control = "all")
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #with correction
@@ -1430,8 +1426,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant spokes' lengths after BH adjustment",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #2 plot
@@ -1451,8 +1445,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant connections' lengths",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #with correction
@@ -1471,8 +1463,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant connections' lengths after BH adjustment",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #3 plot
@@ -1488,8 +1478,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant spokes' directions",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #with correction
@@ -1504,8 +1492,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant spokes' directions after BH adjustment",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #4 plot
@@ -1525,8 +1511,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant connections' directions",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #with correction
@@ -1545,8 +1529,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant connections' directions after BH adjustment",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #5 plot
@@ -1566,8 +1548,6 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant frames",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
   
   #with correction
@@ -1586,11 +1566,8 @@ if(TRUE){
              box = F, axes = TRUE,
              main = "Significant frames after BH adjustment",
              sub = NULL, top = T, aspect = FALSE, expand = 1.1)
-  # pp <- dget("plotView.R")
-  # par3d(userMatrix=pp$userMatrix)
   rglwidget()
 }
-
 
 
 ####################################################################################################
