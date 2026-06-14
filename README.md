@@ -1,6 +1,6 @@
-# LPDSRep: Local Parameterized Discrete Skeletal Representation
+# Shape Analysis via Skeletal Models
 
-This repository contains software for fitting, analyzing, and visualizing **Locally Parameterized Discrete Skeletal Representations (LPDSRep)** of 3D anatomical objects.
+This repository contains software for fitting, analyzing, and visualizing the skeletal model **Locally Parameterized Discrete Skeletal Representations (LPDSRep)** of 3D anatomical objects.
 
 LPDSRep is an invariant skeletal shape representation designed for statistical shape analysis. Unlike conventional discrete skeletal representations (DSRep), LPDSRep employs hierarchical local coordinate systems to represent skeletal geometry independently of global rigid transformations. This allows reliable statistical analysis without the bias introduced by alignment procedures.
 
