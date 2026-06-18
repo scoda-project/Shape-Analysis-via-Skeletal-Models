@@ -215,17 +215,7 @@ for (i in 1:nSamplesG2) {
                                           tarmat = aligned_SpharmPDM_G2[,,i])
 }
 
-# plot spokes tips and tails
-if(TRUE){
-  open3d()
-  for (i in 1:nSamplesG1) {
-    plot3d(skelPlusBoundary_G1[,,i],type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
-  }
-  for (i in 1:nSamplesG2) {
-    plot3d(skelPlusBoundary_G2[,,i],type="p",col = "red",expand = 10,box=FALSE,add = TRUE)
-  }
-  rglwidget()
-}
+
 
 #####################################################################################################
 #####################################################################################################
@@ -237,6 +227,58 @@ BoundaryPDMG1<-skelPlusBoundary_G1[(nTotalRadii+1):dim(skelPlusBoundary_G1)[1],,
 SkeletalPDMG2<-skelPlusBoundary_G2[1:nTotalRadii,,]
 BoundaryPDMG2<-skelPlusBoundary_G2[(nTotalRadii+1):dim(skelPlusBoundary_G1)[1],,]
 
+#####################################################################################################
+#####################################################################################################
+# Plot a fitted DSRep
+
+#choose sampleNo between 1 to nSamplesG1 to see other ds-reps
+sampleNo<-1
+#plot
+if(TRUE){
+  open3d()
+  srep1<-rbind(SkeletalPDMG1[,,sampleNo],BoundaryPDMG1[,,sampleNo])
+  plot3d(SkeletalPDMG1[skelRange,,sampleNo],type="s", size=0.5,col = "blue",expand = 10,box=FALSE,add = TRUE)
+  for (i in 1:nTotalRadii) {
+    plot3d(srep1[c(i,(i+nTotalRadii)),],type="l",lwd = 1,col = "blue",expand = 10,box=FALSE,add = TRUE)
+  }
+  # plot mesh and normal vectors of a sample
+  verts <- rbind(t(as.matrix(aligned_SpharmPDM_G1[,,sampleNo])),1)
+  trgls <- as.matrix(data_obj1$it)
+  tmesh <- tmesh3d(verts, trgls)
+  shade3d(tmesh, col="white",alpha=0.2)  #surface mesh
+  wire3d(tmesh, col="lightgrey")  #surface mesh
+  # decorate3d(xlab = "x", ylab = "y", zlab = "z",
+  #            box = F, axes = TRUE, main = NULL, sub = NULL, top = T, aspect = FALSE, expand = 1.1)
+  rglwidget()
+}
+
+#####################################################################################################
+#####################################################################################################
+# Check correspondence
+
+# Plot to see spoke correspondence
+# We see spokes' tip and tails in separated colors
+if(TRUE){
+  open3d()
+  for (k in 1:nSamplesG1) {
+    plot3d(SkeletalPDMG1[1:upSpoeksNumber,,k],type="p",col = "yellow",expand = 10,box=FALSE,add = TRUE)
+    plot3d(BoundaryPDMG1[1:upSpoeksNumber,,k],type="p",col = "orange",expand = 10,box=FALSE,add = TRUE)
+    plot3d(BoundaryPDMG1[(upSpoeksNumber+1):(upSpoeksNumber+downSpoeksNumber),,k],type="p",col = "green",expand = 10,box=FALSE,add = TRUE)
+    plot3d(SkeletalPDMG1[(2*upSpoeksNumber+1):nTotalRadii,,k],type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
+  }
+  open3d()
+  for (k in 1:nSamplesG2) {
+    plot3d(SkeletalPDMG2[1:upSpoeksNumber,,k],type="p",col = "yellow",expand = 10,box=FALSE,add = TRUE)
+    plot3d(BoundaryPDMG2[1:upSpoeksNumber,,k],type="p",col = "orange",expand = 10,box=FALSE,add = TRUE)
+    plot3d(BoundaryPDMG2[(upSpoeksNumber+1):(upSpoeksNumber+downSpoeksNumber),,k],type="p",col = "green",expand = 10,box=FALSE,add = TRUE)
+    plot3d(SkeletalPDMG2[(2*upSpoeksNumber+1):nTotalRadii,,k],type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
+  }
+  rglwidget()
+}
+
+#####################################################################################################
+#####################################################################################################
+# Extract DSRep features
 
 # Calculate spokes' lengths (radii)
 radii_G1<-array(NA, dim=c(nTotalRadii,nSamplesG1))
@@ -268,54 +310,50 @@ for (k in 1:nSamplesG2) {
   }
 }
 
-#####################################################################################################
-#####################################################################################################
-# Plot a fitted DSRep
 
-#choose sampleNo between 1 to nSamplesG1 to see other ds-reps
-sampleNo<-1
-#plot
+# Plot all directions of an specific spoke
+
+spokeNumber<-10 # pick a number in 1,...,122 as we have 122 spokes
 if(TRUE){
   open3d()
-  srep1<-rbind(SkeletalPDMG1[,,sampleNo],BoundaryPDMG1[,,sampleNo])
-  plot3d(SkeletalPDMG1[skelRange,,sampleNo],type="s", size=0.5,col = "blue",expand = 10,box=FALSE,add = TRUE)
-  for (i in 1:nTotalRadii) {
-    plot3d(srep1[c(i,(i+nTotalRadii)),],type="l",lwd = 1,col = "blue",expand = 10,box=FALSE,add = TRUE)
-  }
-  # plot mesh and normal vectors of a sample
-  verts <- rbind(t(as.matrix(aligned_SpharmPDM_G1[,,sampleNo])),1)
-  trgls <- as.matrix(data_obj1$it)
-  tmesh <- tmesh3d(verts, trgls)
-  shade3d(tmesh, col="white",alpha=0.2)  #surface mech
-  # decorate3d(xlab = "x", ylab = "y", zlab = "z",
-  #            box = F, axes = TRUE, main = NULL, sub = NULL, top = T, aspect = FALSE, expand = 1.1)
+  spheres3d(c(0,0,0),col="white",alpha=0.2)
+  plot3d(t(spokeDirections_G1[spokeNumber,,]),type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
+  plot3d(t(spokeDirections_G2[spokeNumber,,]),type="p",col = "red",expand = 10,box=FALSE,add = TRUE)
   rglwidget()
 }
 
-
-#####################################################################################################
-#####################################################################################################
-# Check correspondence
-
-# Plot to see spoke correspondence
-# We see spokes' tip and tails in separated colors
+# plot all the spokes' directions
 if(TRUE){
   open3d()
-  for (k in 1:nSamplesG1) {
-    plot3d(SkeletalPDMG1[1:upSpoeksNumber,,k],type="p",col = "yellow",expand = 10,box=FALSE,add = TRUE)
-    plot3d(BoundaryPDMG1[1:upSpoeksNumber,,k],type="p",col = "orange",expand = 10,box=FALSE,add = TRUE)
-    plot3d(BoundaryPDMG1[(upSpoeksNumber+1):(upSpoeksNumber+downSpoeksNumber),,k],type="p",col = "green",expand = 10,box=FALSE,add = TRUE)
-    plot3d(SkeletalPDMG1[(2*upSpoeksNumber+1):nTotalRadii,,k],type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
-  }
-  open3d()
-  for (k in 1:nSamplesG2) {
-    plot3d(SkeletalPDMG2[1:upSpoeksNumber,,k],type="p",col = "yellow",expand = 10,box=FALSE,add = TRUE)
-    plot3d(BoundaryPDMG2[1:upSpoeksNumber,,k],type="p",col = "orange",expand = 10,box=FALSE,add = TRUE)
-    plot3d(BoundaryPDMG2[(upSpoeksNumber+1):(upSpoeksNumber+downSpoeksNumber),,k],type="p",col = "green",expand = 10,box=FALSE,add = TRUE)
-    plot3d(SkeletalPDMG2[(2*upSpoeksNumber+1):nTotalRadii,,k],type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
+  spheres3d(c(0,0,0),col="white",alpha=0.2)
+  for (i in 1:dim(spokeDirections_G1)[1]) {
+    plot3d(t(spokeDirections_G1[i,,]),type="p",col = "blue",expand = 10,box=FALSE,add = TRUE)
+    plot3d(t(spokeDirections_G2[i,,]),type="p",col = "red",expand = 10,box=FALSE,add = TRUE)
   }
   rglwidget()
 }
+
+# plot extrinsic and pns mean of an specific observation
+spokeNumber<-10 # pick a number in 1,...,122 as we have 122 spokes
+smallPns<-pns(spokeDirections_G1[spokeNumber,,],sphere.type = "small")
+greatPns<-pns(spokeDirections_G1[spokeNumber,,],sphere.type = "great")
+extrinsicMean<-colMeans(t(spokeDirections_G1[spokeNumber,,]))/norm(colMeans(t(spokeDirections_G1[spokeNumber,,])),type = "2")
+open3d()
+plot3d(t(spokeDirections_G1[spokeNumber,,]),type="p",col = "blue",expand = 10,box=TRUE,add = TRUE)
+plot3d(rbind(smallPns$PNS$mean,smallPns$PNS$mean),type="s",radius = 0.01,col = "orange",expand = 10,box=TRUE,add = TRUE)
+plot3d(rbind(greatPns$PNS$mean,greatPns$PNS$mean),type="s",radius = 0.01,col = "green",expand = 10,box=TRUE,add = TRUE)
+plot3d(rbind(extrinsicMean,extrinsicMean),type="s",radius = 0.01,col = "grey",expand = 10,box=TRUE,add = TRUE)
+drawCircleS2(center = smallPns$PNS$orthaxis[[1]],theta = asin(smallPns$PNS$radii[[2]]))
+drawCircleS2(center = greatPns$PNS$orthaxis[[1]],theta = asin(greatPns$PNS$radii[[2]]))
+rglwidget()
+
+
+# plot the euclideanized data by pns small circle
+plot(t(smallPns$resmat),xlim = c(-2,2),ylim = c(-0.5,0.5))
+# plot the euclideanized data by pns great circle
+plot(t(greatPns$resmat),xlim = c(-2,2),ylim = c(-0.5,0.5))
+
+
 
 ################################################################################
 ############################# LPDSRep ##########################################
