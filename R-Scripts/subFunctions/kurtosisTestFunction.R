@@ -1,7 +1,9 @@
 # copyright belongs to Sungkyu Jung
+# See paper "Kurtosis test of modality for rotationally symmetric distributions on hyperspheres"
 # converted code from MATLAB
 # output is the type of fitted circle
 # likelihood ratio test from shapes package
+
 LRTpval2 <- function(resGreat,resSmall,n) {
   chi2 <- max(n*log(sum(resGreat^2)/sum(resSmall^2)))
   pval <- 1-pchisq(q = chi2, df = 1, lower.tail = T) # likelihood test p-value Also you can use chi2cdf(chi2,1) from library(PEIP) like matlab

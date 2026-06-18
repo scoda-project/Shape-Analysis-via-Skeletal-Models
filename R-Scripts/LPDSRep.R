@@ -347,6 +347,9 @@ drawCircleS2(center = smallPns$PNS$orthaxis[[1]],theta = asin(smallPns$PNS$radii
 drawCircleS2(center = greatPns$PNS$orthaxis[[1]],theta = asin(greatPns$PNS$radii[[2]]))
 rglwidget()
 
+# To choose between small and great circle we can use 
+sphereType<-kurtosisTestFunction(spokeDirections_G1[spokeNumber,,])
+sphereType
 
 # plot the euclideanized data by pns small circle
 plot(t(smallPns$resmat),xlim = c(-2,2),ylim = c(-0.5,0.5))
@@ -526,6 +529,39 @@ if(TRUE){
   }
 }
 
+# plot a distribution of an specific frame in global coordinate system
+frameNumber<-10 #choose a number in 1,...,71 as we have 71 frames
+open3d()
+spheres3d(c(0,0,0),col="white",alpha=0.2)
+vectors3d(t(frames_G1[1,,frameNumber,]),headlength = 0.1,radius = 1/10, col="red", lwd=1)
+vectors3d(t(frames_G1[2,,frameNumber,]),headlength = 0.1,radius = 1/10, col="blue", lwd=1)
+vectors3d(t(frames_G1[3,,frameNumber,]),headlength = 0.1,radius = 1/10, col="green", lwd=1)
+vectors3d(diag(3),headlength = 0.1,radius = 1/10, col="black", lwd=1)
+rglwidget()
+
+# Calculate the mean of an specific frame
+frameNumber<-10 #choose a number in 1,...,71 as we have 71 frames
+# Extrinsic mean from "rotations" library
+framesVectorized<-array(NA,dim = c(9,nSamplesG1))
+for (i in 1:nSamplesG1) {
+  framesVectorized[,i]<-as.vector(t(frames_G1[,,frameNumber,i]))
+}
+tempVec<-mean(as.SO3(t(framesVectorized)),type = 'geometric')
+meanFrame<-matrix(tempVec,nrow = 3,byrow = TRUE)
+
+open3d()
+vectors3d(t(frames_G1[1,,frameNumber,]),headlength = 0.1,radius = 1/100, col="yellow", lwd=1)
+vectors3d(t(frames_G1[2,,frameNumber,]),headlength = 0.1,radius = 1/100, col="yellow", lwd=1)
+vectors3d(t(frames_G1[3,,frameNumber,]),headlength = 0.1,radius = 1/100, col="yellow", lwd=1)
+vectors3d(meanFrame,headlength = 0.1,radius = 1/20, col="blue", lwd=1)
+vectors3d(diag(3),headlength = 0.1,radius = 1/20, col="black", lwd=1)
+rglwidget()
+
+# Exercise:
+# A coordinate frame can be represented as a unit quaternion,
+# i.e., a point on the 3-dimensional unit sphere S^3.
+# Use Principal Nested Spheres (PNS) to compute the mean frame.
+
 #####################################################################################################
 #####################################################################################################
 # Calculate children frames coordinates based on their parents frames
@@ -552,6 +588,18 @@ if(TRUE){
   }
   print("Group 2 is done!")
 }
+
+
+# plot a distribution of an specific frame in local coordinate system based on the parent frame
+frameNumber<-10 #choose a number in 1,...,71 as we have 71 frames
+open3d()
+spheres3d(c(0,0,0),col="white",alpha=0.2)
+vectors3d(t(framesBasedOnParents_G1[1,,frameNumber,]),headlength = 0.1,radius = 1/10, col="red", lwd=1)
+vectors3d(t(framesBasedOnParents_G1[2,,frameNumber,]),headlength = 0.1,radius = 1/10, col="blue", lwd=1)
+vectors3d(t(framesBasedOnParents_G1[3,,frameNumber,]),headlength = 0.1,radius = 1/10, col="green", lwd=1)
+vectors3d(diag(3),headlength = 0.1,radius = 1/10, col="black", lwd=1)
+rglwidget()
+
 
 #####################################################################################################
 #####################################################################################################
