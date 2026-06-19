@@ -101,7 +101,21 @@ for(i in 1:nSamplesG2){
   boundaryPDM_G2[,,i] <- vert2points(data_obj)
 }
 
-# plot before PDMs
+# Plot a sample from G1
+if(TRUE){
+  sampleNumber<-1
+  open3d()
+  verts <- rbind(t(as.matrix(boundaryPDM_G1[,,sampleNumber])),1)
+  trgls <- as.matrix(data_obj1$it)
+  tmesh <- tmesh3d(verts, trgls)
+  shade3d(tmesh, col="white",alpha=1)  #surface mesh
+  wire3d(tmesh, col="lightgrey")  #surface mesh
+  # plot only 300 points
+  plot3d(boundaryPDM_G1[1:300,,sampleNumber],type="s",radius = 0.4 ,col = "black",expand = 10,box=FALSE,add = TRUE)
+  rglwidget()
+}
+
+# plot all SPHARM-PDMs
 if(TRUE){
   open3d()
   for (i in 1:nSamplesG1) {
