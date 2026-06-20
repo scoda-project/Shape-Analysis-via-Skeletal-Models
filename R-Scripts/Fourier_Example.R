@@ -30,10 +30,10 @@ for (i in 1:Nsim) {
 plot.new()
 
 # smooth by fourier basis
-f.basis=create.fourier.basis(rangeval=c(0,Times), nbasis=20)
+f.basis=create.fourier.basis(rangeval=c(0,Times), nbasis=40)
 W.fd=smooth.basis(y=W.mat, fdParobj=f.basis)
 
-plot(W.fd$fd, ylab="", xlab="",col='gray',lty=1)
+plot(W.fd$fd, ylab="", xlab="",col='blue',lty=1)
 
 
 
