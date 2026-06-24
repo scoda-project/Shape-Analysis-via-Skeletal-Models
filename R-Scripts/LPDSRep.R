@@ -1687,52 +1687,27 @@ significantConnectionsDirections
 significantFrame
 
 
-# basedOnSignificantGOPs<-TRUE
-basedOnSignificantGOPs<-FALSE
-if(basedOnSignificantGOPs==TRUE){
-  classG1<-cbind(t(radiiScaled_G1[significantRadii,]),
-                 t(connectionsLengthsScaled_G1[significantConnectionsLengths,]),
-                 euclideanizedSpokesDirBasedOnFramesG1[,1,significantspokesDirections],
-                 euclideanizedSpokesDirBasedOnFramesG1[,2,significantspokesDirections],
-                 euclideanizedConnectionsBasedOnParentFramesG1[,1,significantConnectionsDirections],
-                 euclideanizedConnectionsBasedOnParentFramesG1[,2,significantConnectionsDirections],
-                 euclideanizedFrameBasedOnParentG1[,1,significantFrame],
-                 euclideanizedFrameBasedOnParentG1[,2,significantFrame],
-                 euclideanizedFrameBasedOnParentG1[,3,significantFrame],
-                 LP_sizes_G1)
-  classG2<-cbind(t(radiiScaled_G2[significantRadii,]),
-                 t(connectionsLengthsScaled_G2[significantConnectionsLengths,]),
-                 euclideanizedSpokesDirBasedOnFramesG2[,1,significantspokesDirections],
-                 euclideanizedSpokesDirBasedOnFramesG2[,2,significantspokesDirections],
-                 euclideanizedConnectionsBasedOnParentFramesG2[,1,significantConnectionsDirections],
-                 euclideanizedConnectionsBasedOnParentFramesG2[,2,significantConnectionsDirections],
-                 euclideanizedFrameBasedOnParentG2[,1,significantFrame],
-                 euclideanizedFrameBasedOnParentG2[,2,significantFrame],
-                 euclideanizedFrameBasedOnParentG2[,3,significantFrame],
-                 LP_sizes_G2)
-  
-}else{
-  classG1<-cbind(t(radiiScaled_G1),
-                 t(connectionsLengthsScaled_G1[-16,]),
-                 euclideanizedSpokesDirBasedOnFramesG1[,1,],
-                 euclideanizedSpokesDirBasedOnFramesG1[,2,],
-                 euclideanizedConnectionsBasedOnParentFramesG1[,1,-16],
-                 euclideanizedConnectionsBasedOnParentFramesG1[,2,-16],
-                 euclideanizedFrameBasedOnParentG1[,1,-16],
-                 euclideanizedFrameBasedOnParentG1[,2,-16],
-                 euclideanizedFrameBasedOnParentG1[,3,-16],
-                 LP_sizes_G1)
-  classG2<-cbind(t(radiiScaled_G2),
-                 t(connectionsLengthsScaled_G2[-16,]),
-                 euclideanizedSpokesDirBasedOnFramesG2[,1,],
-                 euclideanizedSpokesDirBasedOnFramesG2[,2,],
-                 euclideanizedConnectionsBasedOnParentFramesG2[,1,-16],
-                 euclideanizedConnectionsBasedOnParentFramesG2[,2,-16],
-                 euclideanizedFrameBasedOnParentG2[,1,-16],
-                 euclideanizedFrameBasedOnParentG2[,2,-16],
-                 euclideanizedFrameBasedOnParentG2[,3,-16],
-                 LP_sizes_G2)
-}
+classG1<-cbind(t(radiiScaled_G1),
+               t(connectionsLengthsScaled_G1[-16,]),
+               euclideanizedSpokesDirBasedOnFramesG1[,1,],
+               euclideanizedSpokesDirBasedOnFramesG1[,2,],
+               euclideanizedConnectionsBasedOnParentFramesG1[,1,-16],
+               euclideanizedConnectionsBasedOnParentFramesG1[,2,-16],
+               euclideanizedFrameBasedOnParentG1[,1,-16],
+               euclideanizedFrameBasedOnParentG1[,2,-16],
+               euclideanizedFrameBasedOnParentG1[,3,-16],
+               LP_sizes_G1)
+classG2<-cbind(t(radiiScaled_G2),
+               t(connectionsLengthsScaled_G2[-16,]),
+               euclideanizedSpokesDirBasedOnFramesG2[,1,],
+               euclideanizedSpokesDirBasedOnFramesG2[,2,],
+               euclideanizedConnectionsBasedOnParentFramesG2[,1,-16],
+               euclideanizedConnectionsBasedOnParentFramesG2[,2,-16],
+               euclideanizedFrameBasedOnParentG2[,1,-16],
+               euclideanizedFrameBasedOnParentG2[,2,-16],
+               euclideanizedFrameBasedOnParentG2[,3,-16],
+               LP_sizes_G2)
+
 
 
 classes<-as.factor(c(rep('CG',nSamplesG1),rep('PD',nSamplesG2)))
