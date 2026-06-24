@@ -310,7 +310,7 @@ for (k in 1:nSamplesG2) {
   }
 }
 
-# Calsulate spokes' directions (in global coordinate system)
+# Calculate spokes' directions (in global coordinate system)
 spokeDirections_G1<-array(NA, dim=c(nTotalRadii,3,nSamplesG1))
 for (k in 1:nSamplesG1) {
   for (i in 1:nTotalRadii) {
@@ -831,6 +831,7 @@ for (j in 1:nSamplesG2) {
   }
 }
 rglwidget()
+
 
 # calculate connections lengths of the spines
 connectionsLengths_spine_G1<-array(NA,dim = c(nSamplesG1,17-1))
